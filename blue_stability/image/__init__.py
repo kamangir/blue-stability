@@ -1,1 +1,1 @@
-NAME = "stability_sdk.image"
+NAME = "blue_stability.image"

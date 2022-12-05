@@ -1,3 +1,3 @@
-NAME = "stability_sdk.script"
+NAME = "blue_stability.script"
 
 from .functions import *
