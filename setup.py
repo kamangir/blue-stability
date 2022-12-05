@@ -3,9 +3,9 @@ from setuptools import setup
 from blue_plugin import NAME, VERSION
 
 setup(
-    name=NAME,
+    name="blue-stability",
     author="arash@kamangir.net",
     version=VERSION,
-    description="template for an abcli plugin",
+    description="bash cli for stability.ai API's stable diffusion inference",
     packages=[NAME],
 )
