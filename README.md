@@ -1,8 +1,10 @@
 # blue-stability
 
-`blue-stability` (`bstab`) is a fork of [stability-sdk](https://github.com/Stability-AI/stability-sdk) and an [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`) plugin.
+`blue-stability` (`bstab`) is a bash cli for [stability-sdk](https://github.com/Stability-AI/stability-sdk).
 
 ## Install
+
+Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`), then,
 
 ```bash
 abcli git clone blue-stability install

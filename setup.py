@@ -1,6 +1,6 @@
 from setuptools import setup
 
-from blue_plugin import NAME, VERSION
+from blue_stability import NAME, VERSION
 
 setup(
     name="blue-stability",

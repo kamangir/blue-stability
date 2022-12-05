@@ -70,7 +70,7 @@ function blue_stability_generate_image() {
     fi
     local footer="$footer | ${@:5}"
 
-    local version=$(python3 -c "from stability_sdk import VERSION; print(VERSION)")
+    local version=$(python3 -c "from blue_stability import VERSION; print(VERSION)")
 
     python3 -m abcli.modules.host \
         add_signature \
