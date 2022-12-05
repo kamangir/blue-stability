@@ -21,10 +21,6 @@ function blue_stability() {
             "browse blue stability notebook."
 
         blue_stability_render $@
-
-        abcli_show_usage "blue_stability sync_fork" \
-            "sync blue-stability w/ stability-sdk."
-
         blue_stability_transform $@
         blue_stability_validate $@
 
@@ -50,14 +46,6 @@ function blue_stability() {
         pushd $abcli_path_git/blue-stability/nbs > /dev/null
         jupyter notebook
         popd > /dev/null
-        return
-    fi
-
-    if [ "$task" == "sync_fork" ] ; then
-        abcli_git sync_fork \
-            blue-stability \
-            main
-
         return
     fi
 
