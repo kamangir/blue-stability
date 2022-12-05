@@ -26,7 +26,7 @@ function blue_stability_generate_video() {
         curl "$2" --output $input_filename
     fi
 
-    python3 -m stability_sdk.script \
+    python3 -m blue_stability.script \
         flatten \
         --filename $input_filename \
         --frame_count $frame_count \
