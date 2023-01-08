@@ -4,8 +4,12 @@ function blue_stability_generate_image() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
-        abcli_show_usage "blue_stability generate image$ABCUL[~dryrun,~sign,~tag]$ABCUL[<image>] [<previous-image>]$ABCUL[\"<sentence>\"]$ABCUL[--width 768 --height 576 --seed 42]" \
+        local options=$2
+        local app_name=$(abcli_option "$2" app blue_stability)
+
+        abcli_show_usage "$app_name generate image$ABCUL[~dryrun,~sign,~tag]$ABCUL[<image>] [<previous-image>]$ABCUL[\"<sentence>\"]$ABCUL[--width 768 --height 576 --seed 42]" \
             "<sentence> -[<previous-image>]-> <image>.png."
+
         return
     fi
 
@@ -15,6 +19,7 @@ function blue_stability_generate_image() {
     mkdir -p $temp_path
 
     local options=$1
+    local app_name=$(abcli_option "$2" app blue_stability)
     local dryrun=$(abcli_option_int "$options" dryrun 1)
     local do_sign=$(abcli_option_int "$options" sign 1)
     local do_tag=$(abcli_option_int "$options" tag 1)
@@ -32,7 +37,7 @@ function blue_stability_generate_image() {
         abcli_log "📖  $i: $sentence"
     fi
 
-    abcli_log "blue-stability: generate: image: \"$sentence\" -[$prev_filename.png ${@:5}]-> $filename.png"
+    abcli_log "$app_name: generate: image: \"$sentence\" -[$prev_filename.png ${@:5}]-> $filename.png"
 
     if [ "$do_tag" == 1 ] ; then
         abcli_tag set \
@@ -70,11 +75,9 @@ function blue_stability_generate_image() {
     fi
     local footer="$footer | ${@:5}"
 
-    local version=$(python3 -c "from blue_stability import VERSION; print(VERSION)")
-
     python3 -m abcli.modules.host \
         add_signature \
-        --application "blue-stability-$version" \
+        --application $app_name-$(python3 -m $app_name version) \
         --filename $abcli_object_path/$filename.png \
         --footer "$footer"
 
