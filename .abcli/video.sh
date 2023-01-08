@@ -1,20 +1,15 @@
 #! /usr/bin/env bash
 
 function blue_stability_generate_video() {
-    local task=$(abcli_unpack_keyword $1 help)
+    local options=$1
+    local app_name=$(abcli_option "$options" app blue_stability)
 
-    if [ $task == "help" ] ; then
-        local options=$2
-        local app_name=$(abcli_option "$2" app blue_stability)
-
-        abcli_show_usage "$app_name generate video$ABCUL[~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,url]$ABCUL<filename.txt|url>$ABCUL[--width 768 --height 576 --seed 42 --start_schedule 0.9]" \
+    if [ $(abcli_option_int "$options" help 0) == 1 ] ; then
+        abcli_show_usage "$app_name generate video$ABCUL[app=<app-name>,~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,url]$ABCUL<filename.txt|url>$ABCUL[--width 768 --height 576 --seed 42 --start_schedule 0.9]" \
             "<filename.txt>|url -> video.mp4"
-
         return
     fi
 
-    local options=$1
-    local app_name=$(abcli_option "$2" app blue_stability)
     local is_url=$(abcli_option_int "$options" url 0)
     local frame_count=$(abcli_option_int "$options" frame_count -1)
     local marker=$(abcli_option "$options" marker)

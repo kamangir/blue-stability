@@ -1,20 +1,16 @@
 #! /usr/bin/env bash
 
 function blue_stability_generate_validate() {
-    local task=$(abcli_unpack_keyword $1 all)
+    local options=$1
+    local app_name=$(abcli_option "$options" app blue_stability)
 
-    if [ $task == "help" ] ; then
-        local options=$2
-        local app_name=$(abcli_option "$2" app blue_stability)
-
+    if [ $(abcli_option_int "$options" help 0) == 1 ] ; then
         abcli_show_usage "$app_name generate validate$ABCUL[app=<app-name>,what=all|image|video]" \
             "validate $app_name."
         return
     fi
 
-    local options=$1
-    local app_name=$(abcli_option "$2" app blue_stability)
-    local what=$(abcli_option "$2" what all)
+    local what=$(abcli_option "$options" what all)
 
     if [ "$what" == "all" ] ; then
         blue_stability_generate_validate \
@@ -42,5 +38,5 @@ function blue_stability_generate_validate() {
         return
     fi
 
-    abcli_log_error "-blue_stability: generate: validate: $what: command not found."
+    abcli_log_error "-$app_name: generate: validate: $what: command not found."
 }

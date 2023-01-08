@@ -1,15 +1,12 @@
 #! /usr/bin/env bash
 
 function blue_stability_generate_image() {
-    local task=$(abcli_unpack_keyword $1 help)
+    local options=$1
+    local app_name=$(abcli_option "$options" app blue_stability)
 
-    if [ $task == "help" ] ; then
-        local options=$2
-        local app_name=$(abcli_option "$2" app blue_stability)
-
-        abcli_show_usage "$app_name generate image$ABCUL[~dryrun,~sign,~tag]$ABCUL[<image>] [<previous-image>]$ABCUL[\"<sentence>\"]$ABCUL[--width 768 --height 576 --seed 42]" \
+    if [ $(abcli_option_int "$options" help 0) == 1 ] ; then
+        abcli_show_usage "$app_name generate image$ABCUL[app=<app-name>,~dryrun,~sign,~tag]$ABCUL[<image>] [<previous-image>]$ABCUL[\"<sentence>\"]$ABCUL[--width 768 --height 576 --seed 42]" \
             "<sentence> -[<previous-image>]-> <image>.png."
-
         return
     fi
 
@@ -18,8 +15,6 @@ function blue_stability_generate_image() {
     local temp_path=$abcli_object_path/_blue_stability_temp
     mkdir -p $temp_path
 
-    local options=$1
-    local app_name=$(abcli_option "$2" app blue_stability)
     local dryrun=$(abcli_option_int "$options" dryrun 1)
     local do_sign=$(abcli_option_int "$options" sign 1)
     local do_tag=$(abcli_option_int "$options" tag 1)
