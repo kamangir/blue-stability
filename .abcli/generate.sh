@@ -6,6 +6,7 @@ function blue_stability_generate() {
     if [ $task == "help" ] ; then
         blue_stability_generate_image $@
         blue_stability_generate_video $@
+        blue_stability_generate_validate $@
         return
     fi
 

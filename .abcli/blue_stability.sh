@@ -22,7 +22,6 @@ function blue_stability() {
 
         blue_stability_render $@
         blue_stability_transform $@
-        blue_stability_validate $@
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
             python3 -m stability_sdk.client -h
