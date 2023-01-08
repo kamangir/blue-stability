@@ -12,7 +12,7 @@ function blue_stability_generate_image() {
 
     mkdir -p $abcli_object_path/raw
 
-    local temp_path=$abcli_object_path/_blue_stability_temp
+    local temp_path=$abcli_object_path/$app_name-$(abcli_string_timestamp)
     mkdir -p $temp_path
 
     local dryrun=$(abcli_option_int "$options" dryrun 1)
@@ -40,16 +40,29 @@ function blue_stability_generate_image() {
             blue_stability
     fi
 
-    local command="python3 -m stability_sdk.client $extra_args ${@:5} \"$sentence\""
+    local command_line=""
+    if [ "$app_name" == blue_stability ] ; then
+        local command_line="python3 -m stability_sdk.client \
+            $extra_args \
+            ${@:5} \
+            \"$sentence\""
+    elif [ "$app_name" == openai ] ; then
+        local command_line="python -m openai-cli \
+            generate_image"
+    else
+        abcli_log_error "-blue-stability: generate: image: $app_name: application not found."
+        return
+    fi
 
-    abcli_log $command
+    abcli_log $command_line
+
     if [ "$dryrun" == 1 ] ; then
         rm -rf $temp_path
         return
     fi
 
     pushd $temp_path > /dev/null
-    eval $command
+    eval $command_line
     popd > /dev/null
 
     mv -v $temp_path/*.png $abcli_object_path/raw/$filename.png
