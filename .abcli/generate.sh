@@ -5,11 +5,10 @@ function blue_stability_generate() {
 
     if [ $task == "help" ] ; then
         local options=$2
-        local app_name=$(abcli_option "$options" app blue_stability)
 
-        blue_stability_generate_image help,app=$app_name
-        blue_stability_generate_video help,app=$app_name
-        blue_stability_generate_validate help,app=$app_name
+        blue_stability_generate_image $task,$options
+        blue_stability_generate_video $task,$options
+        blue_stability_generate_validate $task,$options
 
         return
     fi
