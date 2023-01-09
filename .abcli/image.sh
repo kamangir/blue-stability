@@ -48,8 +48,18 @@ function blue_stability_generate_image() {
             ${@:5} \
             \"$sentence\""
     elif [ "$app_name" == openai ] ; then
-        local command_line="python -m openai-cli \
-            generate_image"
+        if [ -z "$prev_filename" ] ; then
+            local command_line="curl https://api.openai.com/v1/images/generations \
+                -H 'Content-Type: application/json' \
+                -H 'Authorization: Bearer $OPENAI_API_KEY' \
+                -d '{
+                \"prompt\": \"$sentence\",
+                \"n\": 1,
+                \"size\": \"1024x1024\"
+                }'"
+        else
+            local command_line=""
+        fi
     else
         abcli_log_error "-blue-stability: generate: image: $app_name: application not found."
         return
