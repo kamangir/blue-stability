@@ -33,7 +33,7 @@ function blue_stability_generate_image() {
     if [ "$do_tag" == 1 ] ; then
         abcli_tag set \
             $abcli_object_name \
-            blue_stability
+            $app_name
     fi
 
     local command_line=""
