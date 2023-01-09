@@ -56,7 +56,7 @@ function blue_stability_generate_image() {
                 \"prompt\": \"$sentence\",
                 \"n\": 1,
                 \"size\": \"1024x1024\"
-                }'"
+                }' >> ./$filename.json"
         else
             local command_line=""
         fi
