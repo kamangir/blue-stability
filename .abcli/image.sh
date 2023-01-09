@@ -12,23 +12,19 @@ function blue_stability_generate_image() {
 
     mkdir -p $abcli_object_path/raw
 
-    local temp_path=$abcli_object_path/$app_name-$(abcli_string_timestamp)
-    mkdir -p $temp_path
-
     local dryrun=$(abcli_option_int "$options" dryrun 1)
     local do_sign=$(abcli_option_int "$options" sign 1)
     local do_tag=$(abcli_option_int "$options" tag 1)
 
     local filename=$(abcli_clarify_input $2 frame)
+
     local prev_filename=$(abcli_clarify_input $3)
 
     local sentence=$4
 
-    local extra_args=""
     if [ -z "$prev_filename" ] ; then
         abcli_log "📘  $i: $sentence"
     else
-        local extra_args="--init ../raw/$prev_filename.png"
         abcli_log "📖  $i: $sentence"
     fi
 
@@ -42,6 +38,11 @@ function blue_stability_generate_image() {
 
     local command_line=""
     if [ "$app_name" == blue_stability ] ; then
+        local extra_args=""
+        if [ ! -z "$prev_filename" ] ; then
+            local extra_args="--init ../raw/$prev_filename.png"
+        fi
+
         local command_line="python3 -m stability_sdk.client \
             $extra_args \
             ${@:5} \
@@ -57,9 +58,11 @@ function blue_stability_generate_image() {
     abcli_log $command_line
 
     if [ "$dryrun" == 1 ] ; then
-        rm -rf $temp_path
         return
     fi
+
+    local temp_path=$abcli_object_path/$app_name-$(abcli_string_timestamp)
+    mkdir -p $temp_path
 
     pushd $temp_path > /dev/null
     eval $command_line
@@ -93,7 +96,7 @@ function blue_stability_generate_image() {
     python3 -m Kanata.metadata \
         update \
         --is_base64_encoded 1 \
-        --keyword stability_sdk.$filename.args \
+        --keyword $app_name.$filename.args \
         --content "$content" \
         --object_path $abcli_object_path
 
