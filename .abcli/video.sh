@@ -14,7 +14,7 @@ function blue_stability_generate_video() {
     local frame_count=$(abcli_option_int "$options" frame_count -1)
     local marker=$(abcli_option "$options" marker)
     local dryrun=$(abcli_option_int "$options" dryrun 1)
-    local do_render=$(abcli_option_int "$options" render 1)
+    local do_render=$(abcli_option_int "$options" render $(abcli_not $dryrun))
 
     local options=$(abcli_option_default "$options" tag 0)
 
@@ -59,10 +59,10 @@ function blue_stability_generate_video() {
         abcli_tag set \
             $abcli_object_name \
             $app_name
+    fi
 
-        if [ "$do_render" == 1 ] ; then
-            blue_stability render \
-                "$options"
-        fi
+    if [ "$do_render" == 1 ] ; then
+        blue_stability render \
+            "$options"
     fi
 }
