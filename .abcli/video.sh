@@ -14,6 +14,7 @@ function blue_stability_generate_video() {
     local frame_count=$(abcli_option_int "$options" frame_count -1)
     local marker=$(abcli_option "$options" marker)
     local dryrun=$(abcli_option_int "$options" dryrun 1)
+    local do_publish=$(abcli_option_int "$options" publish $(abcli_not $dryrun))
     local do_render=$(abcli_option_int "$options" render $(abcli_not $dryrun))
 
     local options=$(abcli_option_default "$options" tag 0)
@@ -62,7 +63,34 @@ function blue_stability_generate_video() {
     fi
 
     if [ "$do_render" == 1 ] ; then
-        blue_stability render \
+        local options=$(abcli_option_default "$options" fps 5)
+        local options=$(abcli_option_default "$options" rm_frames 0)
+        local options=$(abcli_option_default "$options" resize_to $ABCLI_VIDEO_DEFAULT_SIZE)
+
+        abcli_log "blue-stability: video: $options"
+        abcli_create_video \
+            .png \
+            video \
             "$options"
+
+        if [ -f "video.gif" ] ; then
+            rm -rv video.gif
+        fi
+
+        ffmpeg -i \
+            video.mp4 \
+            video.gif
+    fi
+
+    if [ "$do_publish" == 1 ] ; then
+        abcli_upload
+
+        abcli_publish \
+            $abcli_object_name \
+            video.gif
+
+        abcli_publish \
+            $abcli_object_name \
+            .png
     fi
 }

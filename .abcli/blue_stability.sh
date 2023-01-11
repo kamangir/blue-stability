@@ -19,7 +19,6 @@ function blue_stability() {
         abcli_show_usage "blue_stability notebook" \
             "browse blue stability notebook."
 
-        blue_stability_render $@
         blue_stability_transform $@
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
