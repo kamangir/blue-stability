@@ -15,7 +15,6 @@ function blue_stability() {
             "open blue stability dashboard."
 
         blue_stability_generate $@
-        blue_stability_interactive $@
 
         abcli_show_usage "blue_stability notebook" \
             "browse blue stability notebook."
