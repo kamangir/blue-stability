@@ -24,7 +24,6 @@ function blue_stability() {
         if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
             python3 -m stability_sdk.client -h
         fi
-
         return
     fi
 
@@ -43,6 +42,11 @@ function blue_stability() {
         pushd $abcli_path_git/blue-stability/nbs > /dev/null
         jupyter notebook
         popd > /dev/null
+        return
+    fi
+
+    if [ "$task" == "version" ] ; then
+        python3 -m blue_stability version
         return
     fi
 
