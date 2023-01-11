@@ -78,6 +78,13 @@ function blue_stability_generate_image() {
     eval $command_line
     popd > /dev/null
 
+    if [ "$app_name" == openai ] ; then
+        local image_url=$(jq ".data[0][url]" ./raw/$filename.json)
+
+        curl -o ./raw/$filename.png $image_url
+
+    fi
+
     mv -v $temp_path/*.png $abcli_object_path/raw/$filename.png
     mv -v $temp_path/*.json $abcli_object_path/raw/$filename.json
 

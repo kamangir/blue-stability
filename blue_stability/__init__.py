@@ -1,3 +1,3 @@
 NAME = "blue_stability"
 
-VERSION = "3.24.1"
+VERSION = "3.25.1"
