@@ -1,21 +1,22 @@
 #! /usr/bin/env bash
 
 function blue_stability_generate_video() {
-    local task=$(abcli_unpack_keyword $1 help)
+    local options=$1
+    local app_name=$(abcli_option "$options" app blue_stability)
 
-    if [ $task == "help" ] ; then
-        abcli_show_usage "blue_stability generate video$ABCUL[~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,url]$ABCUL<filename.txt|url>$ABCUL[--width 768 --height 576 --seed 42 --start_schedule 0.9]" \
+    if [ $(abcli_option_int "$options" help 0) == 1 ] ; then
+        abcli_show_usage "$app_name generate video$ABCUL[app=<app-name>,~dryrun,frame_count=16,marker=PART,~publish,~render,resize_to=1280x1024,~sign,url]$ABCUL<filename.txt|url>$ABCUL[--width 768 --height 576 --seed 42 --start_schedule 0.9]" \
             "<filename.txt>|url -> video.mp4"
         return
     fi
 
-    local options=$1
-    local options=$(abcli_option_default "$options" tag 0)
     local is_url=$(abcli_option_int "$options" url 0)
     local frame_count=$(abcli_option_int "$options" frame_count -1)
     local marker=$(abcli_option "$options" marker)
     local dryrun=$(abcli_option_int "$options" dryrun 1)
     local do_render=$(abcli_option_int "$options" render 1)
+
+    local options=$(abcli_option_default "$options" tag 0)
 
     local input_filename=$2
 
@@ -57,7 +58,7 @@ function blue_stability_generate_video() {
     if [ "$dryrun" == 0 ] ; then
         abcli_tag set \
             $abcli_object_name \
-            blue_stability
+            $app_name
 
         if [ "$do_render" == 1 ] ; then
             blue_stability render \

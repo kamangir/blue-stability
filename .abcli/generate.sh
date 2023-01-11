@@ -4,8 +4,12 @@ function blue_stability_generate() {
     local task=$(abcli_unpack_keyword $1 help)
 
     if [ $task == "help" ] ; then
-        blue_stability_generate_image $@
-        blue_stability_generate_video $@
+        local options=$2
+
+        blue_stability_generate_image $task,$options
+        blue_stability_generate_video $task,$options
+        blue_stability_generate_validate $task,$options
+
         return
     fi
 
