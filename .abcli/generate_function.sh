@@ -38,9 +38,5 @@ function blue_stability_generate_function() {
     mv -v $temp_path/*.png $abcli_object_path/raw/$filename.png
     mv -v $temp_path/*.json $abcli_object_path/raw/$filename.json
 
-    cp -v \
-        $abcli_object_path/raw/$filename.png \
-        $abcli_object_path/$filename.png
-
     rm -rf $temp_path
 }
