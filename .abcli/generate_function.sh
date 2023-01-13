@@ -22,7 +22,7 @@ function blue_stability_generate_function() {
         ${@:5} \
         \"$sentence\""
 
-    abcli_log $command_line
+    abcli_log "⚙️  $command_line"
 
     if [ "$dryrun" == 1 ] ; then
         return
