@@ -17,6 +17,7 @@ blue_stability help verbose
 
 ```bash
 abcli select; \
+open .; \
 blue_stability generate image \
   ~dryrun,height=576,width=768 \
   carrot.png - \
@@ -28,8 +29,10 @@ blue_stability generate image \
 ## Text -> Video
 
 ```bash
+abcli select; \
+open .; \
 blue_stability generate video \
-  ~dryrun,frame_count=100,marker=PART,url \
+  ~dryrun,frame_count=5,marker=PART,url \
   https://www.gutenberg.org/cache/epub/51833/pg51833.txt
 ```
 
