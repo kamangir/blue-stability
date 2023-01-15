@@ -16,7 +16,7 @@ function blue_stability_generate_function() {
 
     local extra_args="--seed 42"
     if [ ! -z "$prev_filename" ] ; then
-        local extra_args="--init ../raw/$prev_filename.png --start_schedule 0.9"
+        local extra_args="$extra_args --init ../raw/$prev_filename.png --start_schedule 0.9"
     fi
     if [ ! -z "$height" ] ; then
         local extra_args="$extra_args --height $height"
