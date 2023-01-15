@@ -16,6 +16,7 @@ blue_stability help verbose
 ## Sentence -> Image
 
 ```bash
+abcli select; \
 blue_stability generate image \
   ~dryrun,height=576,width=768 \
   carrot.png - \
