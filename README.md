@@ -16,39 +16,27 @@ blue_stability help verbose
 ## Sentence -> Image
 
 ```bash
+abcli select; \
+open .; \
 blue_stability generate image \
-  ~dryrun \
-  carrot.png - \
-  "an orange carrot walking on Mars." \
-  --width 768 --height 576 \
-  --seed 42 
+  ~dryrun,height=576,width=768 \
+  carrot - \
+  "an orange carrot walking on Mars."
 ```
 
-![image](https://github.com/kamangir/AI-ART/blob/main/blue-stability/carrot.png?raw=true)
+![image](./assets/carrot.png)
 
 ## Text -> Video
 
 ```bash
+abcli select; \
+open .; \
 blue_stability generate video \
-  ~dryrun,frame_count=100,marker=PART,url \
-  https://www.gutenberg.org/cache/epub/51833/pg51833.txt \
-  --seed 43 \
-  --start_schedule 0.9
+  ~dryrun,frame_count=5,marker=PART,url \
+  https://www.gutenberg.org/cache/epub/51833/pg51833.txt
 ```
 
-![blue_stability](https://github.com/kamangir/AI-ART/blob/main/blue-stability/blue_stability.gif)
-
-## Interactive Mode
-
-```bash
-abcli select <name-of-your-script> open; \
-blue_stability interactive \
-  ~dryrun \
-  --seed 42 \
-  --start_schedule 0.9
-```
-
-Start typing your story. 📜
+![image](./assets/minds.gif)
 
 ## Notebook
 
