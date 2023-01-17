@@ -12,7 +12,7 @@ function blue_stability() {
 
     if [ $task == "help" ] ; then
         abcli_show_usage "blue_stability dashboard" \
-            "open blue stability dashboard."
+            "browse blue-stability dashboard."
 
         blue_stability_generate $@
 
