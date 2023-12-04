@@ -10,7 +10,7 @@ function bstab() {
 function blue_stability() {
     local task=$(abcli_unpack_keyword $1 help)
 
-    if [ $task == "help" ] ; then
+    if [ $task == "help" ]; then
         abcli_show_usage "blue_stability dashboard" \
             "browse blue-stability dashboard."
 
@@ -21,31 +21,31 @@ function blue_stability() {
 
         blue_stability_transform $@
 
-        if [ "$(abcli_keyword_is $2 verbose)" == true ] ; then
+        if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
             python3 -m stability_sdk.client -h
         fi
         return
     fi
 
     local function_name="blue_stability_$task"
-    if [[ $(type -t $function_name) == "function" ]] ; then
+    if [[ $(type -t $function_name) == "function" ]]; then
         $function_name "${@:2}"
         return
     fi
 
-    if [ "$task" == "dashboard" ] ; then
+    if [ "$task" == "dashboard" ]; then
         abcli_browse_url https://beta.dreamstudio.ai/membership
         return
     fi
 
-    if [ "$task" == "notebook" ] ; then
-        pushd $abcli_path_git/blue-stability/nbs > /dev/null
+    if [ "$task" == "notebook" ]; then
+        pushd $abcli_path_git/blue-stability/nbs >/dev/null
         jupyter notebook
-        popd > /dev/null
+        popd >/dev/null
         return
     fi
 
-    if [ "$task" == "version" ] ; then
+    if [ "$task" == "version" ]; then
         python3 -m blue_stability version
         return
     fi
@@ -53,3 +53,4 @@ function blue_stability() {
     abcli_log_error "-blue_stability: $task: command not found."
 }
 
+export STABILITY_KEY=$(abcli_cookie read STABILITY_KEY)
