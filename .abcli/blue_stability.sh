@@ -46,7 +46,7 @@ function blue_stability() {
     fi
 
     if [ "$task" == "version" ]; then
-        python3 -m blue_stability version
+        python3 -m blue_stability version "${@:2}"
         return
     fi
 
