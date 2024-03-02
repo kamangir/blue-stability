@@ -1,8 +1,5 @@
 #! /usr/bin/env bash
 
-export STABILITY_KEY=$(abcli_cookie read stability_key)
-export STABILITY_HOST=grpc.stability.ai:443
-
 function bstab() {
     blue_stability $@
 }
@@ -52,5 +49,3 @@ function blue_stability() {
 
     abcli_log_error "-blue_stability: $task: command not found."
 }
-
-export STABILITY_KEY=$(abcli_cookie read STABILITY_KEY)
