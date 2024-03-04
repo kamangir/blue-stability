@@ -1,4 +1,4 @@
-# blue-stability
+# 🟦 blue-stability
 
 `blue-stability` (`bstab`) is a bash cli for [stability-sdk](https://github.com/Stability-AI/stability-sdk).
 

@@ -16,6 +16,11 @@ function blue_stability() {
         abcli_show_usage "blue_stability notebook" \
             "browse blue stability notebook."
 
+        local task
+        for task in pylint pytest test; do
+            blue_stability $task "$@"
+        done
+
         blue_stability_transform $@
 
         if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
@@ -39,6 +44,12 @@ function blue_stability() {
         pushd $abcli_path_git/blue-stability/nbs >/dev/null
         jupyter notebook
         popd >/dev/null
+        return
+    fi
+
+    if [[ "|pylint|pytest|test|" == *"|$task|"* ]]; then
+        abcli_${task} plugin=blue_stability,$2 \
+            "${@:3}"
         return
     fi
 
