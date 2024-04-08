@@ -60,3 +60,6 @@ function blue_stability() {
 
     abcli_log_error "-blue_stability: $task: command not found."
 }
+
+abcli_source_path \
+    $abcli_path_git/blue-stability/.abcli/tests
