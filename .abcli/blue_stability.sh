@@ -36,7 +36,7 @@ function blue_stability() {
     fi
 
     if [ "$task" == "dashboard" ]; then
-        abcli_browse_url https://beta.dreamstudio.ai/membership
+        abcli_browse https://beta.dreamstudio.ai/membership
         return
     fi
 
