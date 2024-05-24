@@ -1,9 +1,5 @@
 #! /usr/bin/env bash
 
-function bstab() {
-    blue_stability $@
-}
-
 function blue_stability() {
     local task=$(abcli_unpack_keyword $1 help)
 
@@ -11,22 +7,12 @@ function blue_stability() {
         abcli_show_usage "blue_stability dashboard" \
             "browse blue-stability dashboard."
 
-        blue_stability_generate $@
+        blue_stability_generate "$@"
 
         abcli_show_usage "blue_stability notebook" \
             "browse blue stability notebook."
 
-        blue_stability_transform $@
-
-        if [ "$(abcli_keyword_is $2 verbose)" == true ]; then
-            python3 -m stability_sdk.client -h
-        fi
-        return
-    fi
-
-    local function_name="blue_stability_$task"
-    if [[ $(type -t $function_name) == "function" ]]; then
-        $function_name "${@:2}"
+        blue_stability_transform "$@"
         return
     fi
 
@@ -42,19 +28,9 @@ function blue_stability() {
         return
     fi
 
-    if [[ "|pylint|pytest|test|" == *"|$task|"* ]]; then
-        abcli_${task} plugin=blue_stability,$2 \
-            "${@:3}"
-        return
-    fi
-
-    if [ "$task" == "version" ]; then
-        python3 -m blue_stability version "${@:2}"
-        return
-    fi
-
-    abcli_log_error "-blue_stability: $task: command not found."
-    return 1
+    abcli_generic_task \
+        plugin=blue_stability,task=$task \
+        "${@:2}"
 }
 
 abcli_source_path \

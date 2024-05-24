@@ -1,11 +1,12 @@
-from setuptools import setup
+from blue_stability import NAME, VERSION, DESCRIPTION
+from blueness.pypi import setup
 
-from blue_stability import NAME, VERSION
 
 setup(
-    name="blue-stability",
-    author="arash@kamangir.net",
+    filename=__file__,
+    repo_name="blue-stability",
+    name=NAME,
     version=VERSION,
-    description="bash cli for stability.ai API's stable diffusion inference",
+    description=DESCRIPTION,
     packages=[NAME],
 )
