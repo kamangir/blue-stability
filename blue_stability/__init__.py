@@ -2,6 +2,6 @@ NAME = "blue_stability"
 
 ICON = "🟦"
 
-DESCRIPTION = f"{ICON} bash cli for stability.ai API's stable diffusion inference"
+DESCRIPTION = f"{ICON} a command interface to stability.ai."
 
-VERSION = "4.30.1"
+VERSION = "4.31.1"
