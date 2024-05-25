@@ -4,4 +4,4 @@ ICON = "🟦"
 
 DESCRIPTION = f"{ICON} bash cli for stability.ai API's stable diffusion inference"
 
-VERSION = "4.28.1"
+VERSION = "4.29.1"

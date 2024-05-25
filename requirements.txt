@@ -1,6 +1,7 @@
 blueness
 abcli
 boto3
+emoji
 geojson
 geopandas
 matplotlib
@@ -10,4 +11,6 @@ pyyaml
 pylint
 pytest
 python-dotenv[cli]
+stability-sdk
 tqdm
+torchvision
