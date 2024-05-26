@@ -33,5 +33,4 @@ function blue_stability() {
         "${@:2}"
 }
 
-abcli_source_path \
-    $abcli_path_git/blue-stability/.abcli/tests
+abcli_source_path - caller,suffix=/tests
