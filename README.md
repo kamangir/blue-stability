@@ -8,7 +8,7 @@
 pip install blue-stability
 ```
 
-````bash
+```bash
  > blue_stability help
 blue_stability dashboard
  . browse blue-stability dashboard.
@@ -36,7 +36,7 @@ blue_stability transform \
  . <object-name> -<prompt>-> 2023-12-27-18-08-30-90155.
 ```
 
-## Sentence -> Image
+## sentence -> image
 
 ```bash
 abcli select; \
@@ -45,11 +45,11 @@ blue_stability generate image \
   ~dryrun,height=576,width=768 \
   carrot - \
   "an orange carrot walking on Mars."
-````
+```
 
 ![image](./assets/carrot.png)
 
-## Text -> Video
+## text -> video
 
 ```bash
 abcli select; \
@@ -61,7 +61,7 @@ blue_stability generate video \
 
 ![image](./assets/minds.gif)
 
-## Notebook
+## notebook
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kamangir/blue-stability/blob/main/nbs/demo_colab.ipynb)
 
@@ -69,4 +69,6 @@ blue_stability generate video \
 blue_stability notebook
 ```
 
-[![PyPI version](https://img.shields.io/pypi/v/blue-stability.svg)](https://blue-stability.org/project/gizai/)
+---
+
+[![PyPI version](https://img.shields.io/pypi/v/blue-stability.svg)](https://pypi.org/project/blue-stability/)
