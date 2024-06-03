@@ -4,4 +4,4 @@ ICON = "🟦"
 
 DESCRIPTION = f"{ICON} a command interface to stability.ai."
 
-VERSION = "4.41.1"
+VERSION = "4.42.1"

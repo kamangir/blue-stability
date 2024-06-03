@@ -1,14 +1,11 @@
 # 🟦 blue-stability
 
-`blue-stability` (`bstab`) is a bash cli for [stability-sdk](https://github.com/Stability-AI/stability-sdk).
+🟦 `blue-stability` (`bstab`) is a bash cli for [stability-sdk](https://github.com/Stability-AI/stability-sdk).
 
-## Install
-
-Install [`awesome-bash-cli`](https://github.com/kamangir/awesome-bash-cli) (`abcli`), then,
+## installation
 
 ```bash
-abcli git clone blue-stability install
-blue_stability help verbose
+pip install blue-stability
 ```
 
 ````bash
@@ -71,3 +68,5 @@ blue_stability generate video \
 ```bash
 blue_stability notebook
 ```
+
+[![PyPI version](https://img.shields.io/pypi/v/blue-stability.svg)](https://blue-stability.org/project/gizai/)
