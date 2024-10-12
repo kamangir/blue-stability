@@ -6,6 +6,4 @@ function test_blue_stability_version() {
 
     abcli_eval dryrun=$do_dryrun \
         "blue_stability version ${@:2}"
-
-    return 0
 }
